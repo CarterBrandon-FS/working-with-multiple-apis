@@ -70,7 +70,8 @@ import { API_KEY } from "./API.js";
     cityName.textContent = cityWeather.city;
 
     const temperature = document.createElement("p");
-    temperature.textContent = `Temperature: ${cityWeather.temperature}°F`;
+    temperature.classList.add("temp");
+    temperature.textContent = `Temperature ${cityWeather.temperature}°F`;
 
     const windspeed = document.createElement("p");
     windspeed.textContent = `Wind Speed: ${cityWeather.windspeed} mph`;
