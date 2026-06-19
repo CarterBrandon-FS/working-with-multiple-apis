@@ -3,18 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
     <title>Working with multi APIs</title>
   </head>
   <body>
     <header id="main-header">
-      <h1>Weather Forcast Application</h1>
+      <h1>Weather Forecast Application</h1>
     </header>
 
     <main>
-      <section>
+      <section id="city-container">
         <button data-city="Chicago">Chicago</button>
         <button data-city="New York">New York</button>
         <button data-city="Los Angeles">Los Angeles</button>
+        <button data-city="Miami">Miami</button>
+        <button data-city="Seattle">Seattle</button>
+        <button data-city="Denver">Denver</button>
       </section>
 
       <section id="weather">
@@ -25,6 +29,6 @@
       <p>Weather data from Open-Meteo and location data from OpenCage</p>
     </footer>
     <script src="js/API.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js" type="module"></script>
   </body>
 </html>
