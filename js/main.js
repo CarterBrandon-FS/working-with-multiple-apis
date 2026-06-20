@@ -1,13 +1,13 @@
 import { API_KEY } from "./API.js";
 
 (() => {
-  // Select the elements from the page
+  // 1. Select the elements from the page
   const weatherSect = document.querySelector("#weather");
   const cityButtons = document.querySelectorAll("#city-container button");
+  const themeToggle = document.querySelector("#theme-toggle");
 
-  // Reusable function that gets location data, then weather
+  // 2. Reusable function that gets location data, then weather
   function getWeather(city) {
-    weatherSect.innerHTML = "";
     weatherSect.textContent = "Loading weather...";
 
     // Check localStorage before making another API request
@@ -26,7 +26,6 @@ import { API_KEY } from "./API.js";
         if (!response.ok) {
           throw new Error("Location request failed");
         }
-
         return response.json();
       })
       .then((locationData) => {
@@ -42,7 +41,6 @@ import { API_KEY } from "./API.js";
         if (!response.ok) {
           throw new Error("Weather request failed");
         }
-
         return response.json();
       })
       .then((weatherData) => {
@@ -63,6 +61,7 @@ import { API_KEY } from "./API.js";
       });
   }
 
+  // 3. Render HTML elements to the DOM through JavaScript
   function displayWeather(cityWeather) {
     weatherSect.innerHTML = "";
 
@@ -81,13 +80,38 @@ import { API_KEY } from "./API.js";
     weatherSect.appendChild(windspeed);
   }
 
-  // Add click events to each city button
+  // 4. Add click events to each city button
   cityButtons.forEach((button) => {
     button.addEventListener("click", () => {
       getWeather(button.dataset.city);
     });
   });
 
-  // Load one city when the page first opens
+  // 5. Initialize theme preference check on page load / refresh
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
+    if (themeToggle) {
+      themeToggle.textContent = "Dark Theme";
+    }
+  }
+
+  // 6. Handle theme toggle click actions
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light-theme");
+
+      if (document.body.classList.contains("light-theme")) {
+        themeToggle.textContent = "Dark Theme";
+        localStorage.setItem("theme", "light");
+      } else {
+        themeToggle.textContent = "Light Theme";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  }
+
+  // 7. Load one default city when the page first opens
   getWeather("Chicago");
 })();

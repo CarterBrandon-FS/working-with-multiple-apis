@@ -18,6 +18,16 @@
   --radius: 12px;
   --transition: all 0.25s ease;
 }
+/* Light Theme--to be manipulated in js */
+body.light-theme {
+  --bg-color: #eef4f8;
+  --panel-bg: #ffffff;
+  --text-main: #1f2933;
+  --text-muted: #4b5563;
+  --button-bg: #dbeafe;
+  --button-hover: #bfdbfe;
+  --border-color: rgba(0, 0, 0, 0.12);
+}
 
 /* ----------Core Reset and Base Style-----------  */
 * {
